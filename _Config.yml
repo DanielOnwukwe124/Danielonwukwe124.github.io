@@ -3,4 +3,4 @@ logo: assets/images/profile_pic.png
 show_downloads: True
 remote_theme: pages-themes/daniel24@
 plugins:
-- jekyll-remote-theme
+- Dagrin-remote-them

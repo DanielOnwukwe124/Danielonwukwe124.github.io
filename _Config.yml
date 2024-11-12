@@ -1,6 +1,6 @@
 title: Daniel
 logo: assets/images/profile_pic.png.jpeg
 show_downloads: True
-remote_theme: pages-themes/daniel24@
+remote_theme: pages-themes/Godhand.101.120
 plugins:
 - jekyll-remote-theme

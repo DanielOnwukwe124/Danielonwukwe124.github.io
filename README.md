@@ -139,7 +139,7 @@ In cleaning the data to the desired structure, the following was carried out
 
 ### Data cleaning and transformation in SQL
 
-'''Sql
+```sql
 /*
 
 1. Extract the channel name from the Nombre column
@@ -164,6 +164,6 @@ Select
     total_views
 From 
 	youtube_data_from_python
-'''
+```
 ![Sql query 1](assets/images/SQL query 1.jpg)
 ![Sql query 2](assets/images/SQL query 2.jpg)

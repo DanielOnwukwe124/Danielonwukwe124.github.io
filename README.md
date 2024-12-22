@@ -9,9 +9,10 @@
   - [Questions to answer](#questions-to-answer)
   - [User demand](#user-demand)
 - [Preparation](#preparation)
+  - [Tools](#tools)
   - [Data source](#Data-source)
-  - [Preparation of dashboard requirements](preparation-of-dashboard-requirements)
-- [Processing](processing)
+  - [Preparation of dashboard requirements](#preparation-of-dashboard-requirements)
+- [Processing](#processing)
 
 
 # Project Approach
@@ -41,14 +42,26 @@ The marketing team needs a dashboard to be able to effectively decide who to run
 A dashboard was required by the marketing team and recommendations based on further analysis from the data analysis team.
 
 # Preparation
+The first step in the preparation phase involves deciding which tools to use. The following tools were chosen;
+## Tools 
 
-The preparation phase involved sourcing for the data for this study. The data should include colums like:
+
+| Tool | Purpose |
+| --- | --- |
+| Excel | Exploring the data |
+| SQL Server | Cleaning, testing, and analyzing the data |
+| Power BI | Visualizing the data via interactive dashboards |
+| GitHub | Hosting the project documentation and version control |
+| Mokkup AI | Designing the wireframe/mockup of the dashboard | 
+
+## Data source
+
+The preparation phase involved sourcing for the data for this project. The data should include colums like:
 - channel names
 - total subscribers
 - total views
 - total videos uploaded
-- 
-## Data source
+  
 The data was sourced from Kaggle (an Excel extract), [see here to find it.](https://www.kaggle.com/datasets/bhavyadhingra00020/top-100-social-media-influencers-2024-countrywise?resource=download)
 
 ## Preparation of Dashboard requirements

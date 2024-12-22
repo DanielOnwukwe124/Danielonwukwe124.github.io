@@ -3,11 +3,12 @@
 ![Diagram showing flow of project](assets/images/Top UK YT Logo.png)
 
 # Table of Content
+
 -[Project Approach](#project approach)
 -[Objective](#objective)
--{Preparation](#Preparation)
- -{Data source](data source)
-- [Processing](Processing)
+-[Preparation](#preparation)
+ -[Data source](#Data-source)
+-[Processing](processing)
 
 
 # Project Approach

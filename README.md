@@ -6,8 +6,11 @@
 
 - [Project Approach](#project-approach)
 - [Objective](#objective)
+  - [Questions to answer](#questions-to-answer)
+  - [User demand](#user-demand)
 - [Preparation](#preparation)
   - [Data source](#Data-source)
+  - [Preparation of dashboard requirements](preparation-of-dashboard-requirements)
 - [Processing](processing)
 
 
@@ -49,6 +52,18 @@ The preparation phase involved sourcing for the data for this study. The data sh
 The data was sourced from Kaggle (an Excel extract), [see here to find it.](https://www.kaggle.com/datasets/bhavyadhingra00020/top-100-social-media-influencers-2024-countrywise?resource=download)
 
 ## Preparation of Dashboard requirements
+The dashboard should contain requirements that answers the questions stated earlier.
+
+MockupAI was used to design a draft of what the dashboard shoukd like and it components. 
+
+The dashboard will show the following:
+A table showing the Channel names, subscriber count, total videos uploaded and total views
+A Tree map showing the channels with the highest views
+A Bar chart showing the Top youtubers by subscriber count
+Three score cards showing engagement metrics such as the average views per video, subscriber engagement rate per video, Views per subscriber
+
+![Dashboard Mockup/draft](assets/images/dashboard_mockup.png)
+
 
 # Processing
 The processing of the data was done in four parts:

@@ -15,6 +15,7 @@
 - [Processing](#processing)
   - [Data exploration](#data-exploration)
   - [Data cleaning](#data-cleaning)
+    -[Data cleaning and transformation in SQL](#data-cleaning-and-transformation-in-sql)
   - [Testing the data](#testing-the-data)
 - [Development of visuals](#development-of-visuals)
    -[Dashboard preview](#dashboard-preview)
@@ -270,10 +271,13 @@ Having Count (*) > 1
 # Development of Visuals
 
 ## Dashboard Preview
+
 ![Dashboard preview](assets/images/Power BI gif 2.gif)
 
 ## Dax measures
+
 ### 1. Total Subscribers (M)
+
 ```sql
 Total Subscribers (M) = 
 VAR million = 1000000

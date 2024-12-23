@@ -18,8 +18,8 @@
      -[Data cleaning and transformation in SQL](#data-cleaning-and-transformation-in-sql)
   - [Testing the data](#testing-the-data)
 - [Development of visuals](#development-of-visuals)
-  -[Dashboard Preview](#dashboard-preview)
-  -[DAX measures](#dax-measures)
+  - [Results](#results)
+  - [DAX Measures](#dax-measures)
 
 # Objectives
 The main objective of this project is to find out the top Youtubers in the Uk in order to determine which is best to run marketing campaigns with in 2024.
@@ -270,11 +270,11 @@ Having Count (*) > 1
 
 # Development of Visuals
 
-## Dashboard Preview
+## Results
 
 ![Dashboard preview](assets/images/Power BI gif 2.gif)
 
-## Dax measures
+## DAX Measures
 
 ### 1. Total Subscribers (M)
 

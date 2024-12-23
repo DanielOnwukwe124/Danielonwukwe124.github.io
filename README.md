@@ -13,6 +13,10 @@
   - [Data source](#Data-source)
   - [Preparation of dashboard requirements](#preparation-of-dashboard-requirements)
 - [Processing](#processing)
+  - [Data exploration](data-exploration)
+  - [Data cleaning](data-cleaning)
+  - [Testing the data](testing-the-data)
+
 
 
 # Objectives
@@ -167,3 +171,97 @@ From
 ```
 ![Sql query 1](assets/images/SQL query 1.jpg)
 ![Sql query 2](assets/images/SQL query 2.jpg)
+
+```sql
+/*
+3. Create a view with the transformed data containing only the required columns and cast the channel name as Varchar
+
+*/
+
+---3.
+
+Create View top_UK_Youtubers_2024 As
+
+Select CAST(SUBSTRING (NOMBRE, 1, Charindex ('@', NOMBRE)-1)As varchar (100)) as channel_name,
+   total_subscribers,
+   total_videos,
+   total_views
+From youtube_data_from_python
+```
+![Sql query 3](assets/images/SQL query 3.jpg)
+
+## Testing the data
+
+When testing the data, several data quality and validation checks were conducted
+
+```sql
+/*
+
+# DATA QUALITY CHECKS
+1.The data needs to be 100 records of youtube channels (Row count test) (Passed!!!)
+2. The data needs 4 fields (Column count test) (passed!!!)
+3. The channel name must be string format and the other colums must be numerical data type (passed!!!)
+4. Each record must be unique in the dataset (Duplicate count check) (passed!!!)
+
+Row count = 100
+Column count = 4
+
+# Data types
+Channel name = VARCHAR
+total_subscribers = Integer
+total_views = Integer
+total_videos = Integer
+
+# There must be zero duplicates
+*/
+
+---1. Row count check
+
+select 
+	COUNT (*) as no_of_rows 
+from 
+	top_UK_Youtubers_2024
+
+---2. Column count check
+
+Select 
+	count (*) as column_count
+from 
+	INFORMATION_SCHEMA.COLUMNS 
+where 
+	Table_name = 'top_UK_Youtubers_2024'
+
+---3. data type check 
+
+Select 
+	COLUMN_NAME, DATA_TYPE
+from 
+	INFORMATION_SCHEMA.COLUMNS 
+where 
+	Table_name = 'top_UK_Youtubers_2024'
+
+---4. duplicate check
+
+Select 
+	Channel_name, Count (*) as duplicate_count
+From 
+	top_UK_Youtubers_2024
+Group by
+	Channel_name
+Having Count (*) > 1
+```
+### Row count check
+
+![Sql query 4](assets/images/Sql query 4.jpg)
+
+### Column count check
+
+![Sql query 5](assets/images/Sql query 5.jpg)
+
+### Data type check
+
+![Sql query 6](assets/images/Sql query 6.jpg)
+
+### Duplicate check
+
+![Sql query 7](assets/images/Sql query 7.jpg)

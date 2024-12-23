@@ -15,11 +15,11 @@
 - [Processing](#processing)
   - [Data exploration](#data-exploration)
   - [Data cleaning](#data-cleaning)
-    -[Data cleaning and transformation in SQL](#data-cleaning-and-transformation-in-sql)
+     -[Data cleaning and transformation in SQL](#data-cleaning-and-transformation-in-sql)
   - [Testing the data](#testing-the-data)
 - [Development of visuals](#development-of-visuals)
-   -[Dashboard preview](#dashboard-preview)
-   -[DAX measures](#DAX-measures)
+  -[Dashboard Preview](#dashboard-preview)
+  -[DAX measures](#dax-measures)
 
 # Objectives
 The main objective of this project is to find out the top Youtubers in the Uk in order to determine which is best to run marketing campaigns with in 2024.

@@ -26,11 +26,12 @@ The main objective of this project is to find out the top Youtubers in the Uk in
 
 ## Questions to answer
 
-- Who are the top 3 Youtubers in the UK based on subscriber count
-- Who are the top 3 youtubers in the UK based on total videos uploaded
-- Who are the top 3 Youtubers in the UK based on total Views
-- What are the engagement metrics
-- Based on the average views per video, who are the top 3 youtubers in the UK base on subscriber count, total videos uploaded and total views
+1. Who are the top 3 Youtubers in the UK based on subscriber count
+2. Who are the top 3 youtubers in the UK based on total videos uploaded
+3. Who are the top 3 Youtubers in the UK based on total Views
+4. Which 3 channels have the highest average views per video?
+5. Which 3 channels have the highest views per subscriber ratio?
+6. Which 3 channels have the highest subscriber engagement rate per video uploaded?
 
 ## User demand
 
@@ -344,3 +345,174 @@ RETURN viewsPerSubscriber
 
 ```
 
+# Analysis
+
+The analysis for this project focused on the following questions:
+1. Who are the top 3 Youtubers in the UK based on subscriber count
+2. Who are the top 3 youtubers in the UK based on total videos uploaded
+3. Who are the top 3 Youtubers in the UK based on total Views
+4. Which 3 channels have the highest average views per video?
+5. Which 3 channels have the highest views per subscriber ratio?
+6. Which 3 channels have the highest subscriber engagement rate per video uploaded?
+
+
+## 1. Who are the top 3 YouTubers with the most subscribers?
+
+| Rank | Channel Name         | Subscribers (M) |
+|------|----------------------|-----------------|
+| 1    | NoCopyrightSounds    | 33.60           |
+| 2    | DanTDM               | 28.60           |
+| 3    | Dan Rhodes           | 26.50           |
+
+
+## 2. Which 3 channels have uploaded the most videos?
+
+| Rank | Channel Name    | Videos Uploaded |
+|------|-----------------|-----------------|
+| 1    | GRM Daily       | 14,696          |
+| 2    | Manchester City | 8,248           |
+| 3    | Yogscast        | 6,435           |
+
+
+
+## 3. Which 3 channels have the most views?
+
+| Rank | Channel Name | Total Views (B) |
+|------|--------------|-----------------|
+| 1    | DanTDM       | 19.78           |
+| 2    | Dan Rhodes   | 18.56           |
+| 3    | Mister Max   | 15.97           |
+
+
+## 4. Which 3 channels have the highest average views per video?
+
+| Channel Name | Averge Views per Video (M) |
+|--------------|-----------------|
+| Mark Ronson  | 32.27           |
+| Jessie J     | 5.97            |
+| Dua Lipa     | 5.76            |
+
+
+## 5. Which 3 channels have the highest views per subscriber ratio?
+
+| Rank | Channel Name       | Views per Subscriber        |
+|------|-----------------   |---------------------------- |
+| 1    | GRM Daily          | 1185.79                     |
+| 2    | Nickelodeon        | 1061.04                     |
+| 3    | Disney Junior UK   | 1031.97                     |
+
+
+## 6. Which 3 channels have the highest subscriber engagement rate per video uploaded?
+
+| Rank | Channel Name    | Subscriber Engagement Rate  |
+|------|-----------------|---------------------------- |
+| 1    | Mark Ronson     | 343,000                     |
+| 2    | Jessie J        | 110,416.67                  |
+| 3    | Dua Lipa        | 104,954.95                  |
+
+
+### Notes
+
+In order to generate better ROI for the marketing client, this study prioritized metrics associated with youtubers with the:
+- Most Subscribers
+- Most Videos
+- Most Views
+  
+Insights on the average views per video of these category of youtubers will inform the marketing team which is best to collaborate with.
+
+## Validation 
+
+### 1. Youtubers with the most subscribers 
+
+The Campaign idea if the youtubers with the most subscribers should be proritized will involve product placement.
+A conversion rate of 2% was assumed by the data analytics team. Each product to be advertised cost 5$ and the cost of running the campaign was 50,000$
+
+#### Calculation breakdown
+A. NoCopyrightSounds 
+- Average views per video = 6.92 million
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (one-time fee) = $50,000
+- Potential units sold per video = 6.92 million x 2% conversion rate = 138,400 units sold
+- Potential revenue per video = 138,400 x $5 = $692,000
+- Net profit = Potential revenue per video - campaign cost
+  
+- **Net profit = $692,000 - $50,000 = $642,000**
+
+b. DanTDM
+
+- Average views per video = 5.34 million
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (one-time fee) = $50,000
+- Potential units sold per video = 5.34 million x 2% conversion rate = 106,800 units sold
+- Potential revenue per video = 106,800 x $5 = $534,000
+- Net profit = Potential revenue per video - campaign cost
+  
+- **Net profit = $534,000 - $50,000 = $484,000**
+
+c. Dan Rhodes
+
+- Average views per video = 11.15 million
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (one-time fee) = $50,000
+- Potential units sold per video = 11.15 million x 2% conversion rate = 223,000 units sold
+- Potential revenue per video = 223,000 x $5 = $1,115,000
+- Net profit = Potential revenue per video - campaign cost
+
+- **Net profit = $1,115,000 - $50,000 = $1,065,000**
+
+
+Best option from category: Dan Rhodes
+
+```Sql
+/*
+
+1. Define the variables
+2. Create a CTE that rounds the average views per video
+3. Select the columns that are required for the analysis
+4. Order by net_profit (from highest to lowest)
+
+*/
+
+---1. Define the variables
+Declare @ConversionRate Float = 0.02; ---The conversion rate @2%
+Declare @ProductCost Float = 5.0; --- The product cost @ 5.0 USD
+Declare @CampaignCost Float = 50000.0; --- The campaign cost @ 50000 USD
+
+
+
+---2 Create a CTE that rounds the average views per video
+
+With ChannelData As (
+	Select
+		channel_name,
+		total_views,
+		total_videos,
+		Round ((Cast (total_views as Float) /total_videos), -4) As rounded_avg_views_per_video
+From 
+	Youtube_Db_Python.dbo.top_UK_Youtubers_2024
+
+	)
+
+---3. Select the columns that are required for the analysis
+
+	Select 
+	 channel_name,
+    rounded_avg_views_per_video,
+    (rounded_avg_views_per_video * @conversionRate) AS potential_units_sold_per_video,
+    (rounded_avg_views_per_video * @conversionRate * @productCost) AS potential_revenue_per_video,
+    ((rounded_avg_views_per_video * @conversionRate * @productCost) - @campaignCost) AS net_profit
+	from ChannelData
+
+---4.
+Where channel_name IN ('NoCopyrightSounds', 'DanTDM', 'Dan Rhodes')
+
+---5.
+
+Order by Net_profit DESC
+
+```
+#### Output
+![SQL query 8](assets/images/Sql query 8.jpg)

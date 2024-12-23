@@ -17,8 +17,8 @@
   - [Data cleaning](#data-cleaning)
   - [Testing the data](#testing-the-data)
 - [Development of visuals](#development-of-visuals)
-  -[Dashboard preview](#dashboard-preview)
-  -[DAX measures](#DAX-measures)
+   -[Dashboard preview](#dashboard-preview)
+   -[DAX measures](#DAX-measures)
 
 # Objectives
 The main objective of this project is to find out the top Youtubers in the Uk in order to determine which is best to run marketing campaigns with in 2024.

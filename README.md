@@ -22,7 +22,12 @@
   - [DAX Measures](#dax-measures)
 - [Analysis](#analysis)
    - [Validation](#validation)
-
+- [Insights gained](#insights-gained)
+- [Recommendation](#recommendation)
+  - [Potential ROI](#potential-roi)
+  - [Action plan](#action-plan)
+ 
+    
 # Objectives
 The main objective of this project is to find out the top Youtubers in the Uk in order to determine which is best to run marketing campaigns with in 2024.
 
@@ -663,6 +668,83 @@ c. **Mister Max**
 
 Best option from category: Mister Max
 
+```Sql
+/* 
+# 1. Define variables
+# 2. Create a CTE that rounds the average views per video
+# 3. Select the columns you need and create calculated columns from existing ones
+# 4. Filter results by YouTube channels
+# 5. Sort results by net profits (from highest to lowest)
+*/
+
+
+-- 1.
+DECLARE @conversionRate FLOAT = 0.02;           -- The conversion rate @ 2%
+DECLARE @productCost FLOAT = 5.0;               -- The product cost @ $5
+DECLARE @campaignCost FLOAT = 130000;   -- The campaign cost per video @ $130000
+
+
+-- 2.
+WITH ChannelData AS (
+    SELECT
+        channel_name,
+        total_views,
+        total_videos,
+        ROUND((CAST(total_views AS FLOAT) / total_videos), -4) AS rounded_avg_views_per_video
+    FROM
+    Youtube_Db_Python.dbo.top_UK_Youtubers_2024
+
+	)
+-- 3.
+SELECT
+    channel_name,
+    rounded_avg_views_per_video,
+    (rounded_avg_views_per_video * @conversionRate) AS potential_units_sold_per_video,
+    (rounded_avg_views_per_video * @conversionRate * @productCost) AS potential_revenue_per_video,
+    (rounded_avg_views_per_video * @conversionRate * @productCost) - @campaignCost AS net_profit
+FROM
+    ChannelData
+
+
+-- 4.
+WHERE
+    channel_name IN ('Mister Max', 'DanTDM', 'Dan Rhodes')
+
+
+-- 5.
+ORDER BY
+    net_profit DESC;
+```
+
 #### Output
 ![Sql query 12](assets/images/SQL query 12.jpg)
 ![Sql query 13](assets/images/Sql query 13.jpg)
+
+# Insights gained
+
+The following discoveries were made
+1. NoCopyrightSOunds, Dan Rhodes and DanTDM are the channnels with the most subscribers in the UK
+2. GRM Daily, Man City and Yogscast are the channels with the most videos uploaded
+3. DanTDM, Dan RHodes and Mister Max are the channels with the most views
+   
+
+# Recommendations
+
+1. Dan Rhodes is the best youtuber to collaborate if we want to maximize vivibility among the top 3 youtubers with the highest subscribers.
+2.  Mister Max is the best YouTuber to collaborate with if reach is to be maximized. worth considering for collaboration among youtubers in this category are DanTDM and Dan Rhodes for long-term options considering the fact that they both have large subscriber bases and are averaging significantly high number of views.
+3. Based on this analysis, the channels to be considered for collaboration are Dan Rhodes, Dan TDM, NoCopyrightsounds and Mister Max.
+
+# Potential ROI
+1. For a campaign aimed at maximizing product visibility, Dan Rhodes can deliver a net profit of $1,065,000
+2. An influencer marketing campaign with Mister Max can generate a net profit of $1,276,000
+3. A product placement campaign with DanTDM can generate the client approximately $484,000 per video. If we advance with an influencer marketing campaign deal instead, this would make the client a one-off net profit of $404,000.
+4. NoCopyrightSounds could profit the client $642,000 per video too for a product placement campaign which is also worth considering.
+
+# Action Plan
+Based on this analysis, we found out that the best youtube channel to collaborate with is Dan Rhodes. 
+The marketing team will also look into future campaigns with Dan TDM, Mister Max and NoCopyRightsounds.
+To implement this, the marketing team should do the following:
+1. Reach out to the managemnt of Dan Rhodes youtube channel
+2. Reach a contract agreement and begin the campaign
+3. Track the performance of the campaign using the KPI's against current predictions
+4. Gather insights and customer feedback from the campaigns and based on the performance, organize other campaigns with the other recommended youtube channels by the marketing team.

@@ -20,6 +20,8 @@
 - [Development of visuals](#development-of-visuals)
   - [Results](#results)
   - [DAX Measures](#dax-measures)
+- [Analysis](#analysis)
+   - [Validation](#validation)
 
 # Objectives
 The main objective of this project is to find out the top Youtubers in the Uk in order to determine which is best to run marketing campaigns with in 2024.
@@ -515,4 +517,152 @@ Order by Net_profit DESC
 
 ```
 #### Output
+![SQL query 9](assets/images/SQL query 9.jpg)
 ![SQL query 8](assets/images/Sql query 8.jpg)
+
+### 2. Youtubers with the most videos uploaded
+
+### Calculation breakdown 
+
+The campaign idea if youtubers with the most videos uploaded is prioritized will be to sponsor video series.
+A conversion rate of 2% was assumed by the data analytics team. Each product to be advertised cost 5$ and the cost of running the campaign was 55,000$ for 11 videos as a budget of 5,000$ was to be spent on one video.
+
+A. **GRM Daily**
+- Average views per video = 510,000
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (11-videos @ $5,000 each) = $55,000
+- Potential units sold per video = 510,000 x 2% conversion rate = 10,200 units sold
+- Potential revenue per video = 10,200 x $5= $51,000
+- Net profit = Potential revenue per video - campaign cost
+
+- **Net profit = $51,000 - $55,000 = -$4,000 (potential loss)**
+
+b. **Manchester City**
+
+- Average views per video = 240,000
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (11-videos @ $5,000 each) = $55,000
+- Potential units sold per video = 240,000 x 2% conversion rate = 4,800 units sold
+- Potential revenue per video = 4,800 x $5= $24,000
+- Net profit = Potential revenue per video - campaign cost
+
+- **Net profit = $24,000 - $55,000 = -$31,000 (potential loss)**
+
+C. **Yogscast**
+
+- Average views per video = 710,000
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (11-videos @ $5,000 each) = $55,000
+- Potential units sold per video = 710,000 x 2% conversion rate = 14,200 units sold
+- Potential revenue per video = 14,200 x $5= $71,000
+- Net profit = Potential revenue per video - campaign cost
+
+- **Net profit = $71,000 - $55,000 = $16,000 (profit)**
+
+
+
+Best option from category: Yogscast
+
+```Sql
+/* 
+# 1. Define variables
+# 2. Create a CTE that rounds the average views per video
+# 3. Select the columns you need and create calculated columns from existing ones
+# 4. Filter results by YouTube channels
+# 5. Sort results by net profits (from highest to lowest)
+*/
+
+
+-- 1.
+DECLARE @conversionRate FLOAT = 0.02;           -- The conversion rate @ 2%
+DECLARE @productCost FLOAT = 5.0;               -- The product cost @ $5
+DECLARE @campaignCostPerVideo FLOAT = 5000.0;   -- The campaign cost per video @ $5,000
+DECLARE @numberOfVideos INT = 11;               -- The number of videos (11)
+
+
+-- 2.
+WITH ChannelData AS (
+    SELECT
+        channel_name,
+        total_views,
+        total_videos,
+        ROUND((CAST(total_views AS FLOAT) / total_videos), -4) AS rounded_avg_views_per_video
+    FROM
+    Youtube_Db_Python.dbo.top_UK_Youtubers_2024
+
+	)
+-- 3.
+SELECT
+    channel_name,
+    rounded_avg_views_per_video,
+    (rounded_avg_views_per_video * @conversionRate) AS potential_units_sold_per_video,
+    (rounded_avg_views_per_video * @conversionRate * @productCost) AS potential_revenue_per_video,
+    ((rounded_avg_views_per_video * @conversionRate * @productCost) - (@campaignCostPerVideo * @numberOfVideos)) AS net_profit
+FROM
+    ChannelData
+
+
+-- 4.
+WHERE
+    channel_name IN ('GRM Daily', 'Man City', 'YOGSCAST Lewis & Simon ')
+
+
+-- 5.
+ORDER BY
+    net_profit DESC;
+```
+#### Output
+![Sql query 10](assets/images/SQL query 10.jpg)
+![Sql query 11](assets/images/SQL query 11.jpg)
+
+### 3.  Youtubers with the most views 
+
+#### Calculation breakdown
+
+The campaign idea if youtubers with the most views is prioritized will be influencer marketing. 
+A conversion rate of 2% was assumed by the data analytics team. Each product to be advertised cost 5$ and the cost of running the campaign was 130,000$ for a period of 3 months
+
+a. DanTDM
+
+- Average views per video = 5.34 million
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (3-month contract) = $130,000
+- Potential units sold per video = 5.34 million x 2% conversion rate = 106,800 units sold
+- Potential revenue per video = 106,800 x $5 = $534,000
+- Net profit = Potential revenue per video - campaign cost
+
+- **Net profit = $534,000 - $130,000 = $404,000**
+
+b. **Dan Rhodes**
+
+- Average views per video = 11.15 million
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (3-month contract) = $130,000
+- Potential units sold per video = 11.15 million x 2% conversion rate = 223,000 units sold
+- Potential revenue per video = 223,000 x $5 = $1,115,000
+- Net profit = Potential revenue per video - campaign cost
+  
+- **Net profit = $1,115,000 - $130,000 = $985,000**
+
+c. **Mister Max**
+
+- Average views per video = 14.06 million
+- Conversion rate = 2% = 0.02
+- Product cost = $5
+- Campaign cost (3-month contract) = $130,000
+- Potential units sold per video = 14.06 million x 2% conversion rate = 281,200 units sold
+- Potential revenue per video = 281,200 x $5 = $1,406,000
+- Net profit = Potential revenue per video - campaign cost
+
+- **Net profit = $1,406,000 - $130,000 = $1,276,000**
+
+Best option from category: Mister Max
+
+#### Output
+![Sql query 12](assets/images/SQL query 12.jpg)
+![Sql query 13](assets/images/Sql query 13.jpg)

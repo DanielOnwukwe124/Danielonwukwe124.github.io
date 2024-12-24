@@ -734,13 +734,13 @@ The following discoveries were made
 2.  Mister Max is the best YouTuber to collaborate with if reach is to be maximized. worth considering for collaboration among youtubers in this category are DanTDM and Dan Rhodes for long-term options considering the fact that they both have large subscriber bases and are averaging significantly high number of views.
 3. Based on this analysis, the channels to be considered for collaboration are Dan Rhodes, Dan TDM, NoCopyrightsounds and Mister Max.
 
-# Potential ROI
+### Potential ROI
 1. For a campaign aimed at maximizing product visibility, Dan Rhodes can deliver a net profit of $1,065,000
 2. An influencer marketing campaign with Mister Max can generate a net profit of $1,276,000
 3. A product placement campaign with DanTDM can generate the client approximately $484,000 per video. If we advance with an influencer marketing campaign deal instead, this would make the client a one-off net profit of $404,000.
 4. NoCopyrightSounds could profit the client $642,000 per video too for a product placement campaign which is also worth considering.
 
-# Action Plan
+### Action Plan
 Based on this analysis, we found out that the best youtube channel to collaborate with is Dan Rhodes. 
 The marketing team will also look into future campaigns with Dan TDM, Mister Max and NoCopyRightsounds.
 To implement this, the marketing team should do the following:
